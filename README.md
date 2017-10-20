@@ -1,3 +1,6 @@
+# My NodeJS learning project.
+I decided to learn Node.js. This is my first project to check out possibilities and potential of Node.js.
+
 # node-js-getting-started
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
