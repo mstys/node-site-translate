@@ -1,13 +1,21 @@
 var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var bodyParser  = require('body-parser');
 
 var Twig = require("twig");
 
 var i18n = require('i18n');
 
 var i18nMiddleware = require('./i18n-middleware.js');
-var routes = require('./routes.js');
+var routes = require('./routes/index.js');
+var routesLogin = require('./routes/login/login.js');
+var routesApi = require('./routes/api/api.js');
+// var login = require('./routes.js');
+
+// var jws = require('jws');
+// var jwt = require('express-jwt');
+
 
 var app = express();
 
@@ -43,6 +51,12 @@ app.use(session({
 }));
 
 /**
+ * Set body parser to get params from POST and URL parameters
+ */
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+/**
  * Translation module setup
  */
 app.use(i18n.init);
@@ -59,7 +73,8 @@ app.set('view engine', 'twig');
  */
 app.use(i18nMiddleware.url(app, '/'), routes);
 app.use(i18nMiddleware.url(app, '/contact'), routes);
-
+app.use(routesLogin);
+app.use('/api', routesApi);
 
 /**
  * Dev setup
