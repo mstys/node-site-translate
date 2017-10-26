@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var i18n = require('i18n');
+var jwt = require('jsonwebtoken');
 
 var routerApi = express.Router();
 

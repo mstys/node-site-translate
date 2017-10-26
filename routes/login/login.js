@@ -4,38 +4,44 @@ var jwt = require('jsonwebtoken');
 
 
 
-app.get('/authenticate', function (req, res) {
+app.post('/authenticate', function (req, res) {
+
+    const login = req.body.login;
+    const password = req.body.password;
 
     let user = {
         login: 'admin',
+        password: 'admin',
         admin: false
     }
 
-    if (user) {
+    if(login == user.login && password == user.password) {
         let payload = {
             admin: user.admin
         }
 
         let token = jwt.sign(payload, 'secret_token');
 
-        res.json({success: true, user: user.login, token: token})
+        res.json({success: true, user: user.login, token: token});
+
+    } else {
+        res.json({success: false, message: 'Wrong data access'});
+
     }
 
 });
 
 app.post('/login', function (req, res) {
     
-    console.log(req.body.login); //>>>????
-    let login = req.body.login;
-    let password = req.body.password;
+
 
     // request to Db
 
     setTimeout(function() {
         res.status(200).send({
             success: true,
-            login: "login",
-            password: "password"
+            login: login,
+            password: password
         })
     }, 3000);
 
