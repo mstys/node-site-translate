@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  {% include "../partials/header.twig" %}
+  {% include "./partials/header.twig" %}
 </head>
 
 <body>
+    {% include "./partials/navbar.twig" %}
+
     {% block main %}
-    
+
     {% endblock %}
+
+
+    <script src="/app.js"></script>
 </body>
 </html>

@@ -3,11 +3,16 @@ var app = express();
 var jwt = require('jsonwebtoken');
 
 
+app.set('views', './views/pages/');
 
 app.post('/authenticate', function (req, res) {
 
     const login = req.body.login;
     const password = req.body.password;
+
+    console.log(req.body);
+    console.log(req.body.login);
+    console.log(login, password);
 
     let user = {
         login: 'admin',
