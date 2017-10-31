@@ -66,7 +66,7 @@ app.use(i18nMiddleware.init);
  * Twig engine setup
  */
 app.set('view engine', 'twig');
-
+app.set('views', __dirname + '/views/');
 
 /**
  * Router

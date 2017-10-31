@@ -5,6 +5,8 @@ var jwt = require('jsonwebtoken');
 
 var routerApi = express.Router();
 
+
+
 routerApi.use(function (req, res, next) {
 
     let token;
@@ -13,6 +15,8 @@ routerApi.use(function (req, res, next) {
         token = req.headers.authorization.split(' ')[1];
     } else if (req.query && req.query.token) {
         token = req.query.token;
+    } else if (req.cookies.token) {
+        token = req.cookies.token;
     } else {
         token = null
     }
@@ -28,13 +32,17 @@ routerApi.use(function (req, res, next) {
             }
         })
     } else {
-
         return res
             .status(403)
-            .send({success: false, message: 'Token not found!'})
+            .render('dashboard/pages/403', {});
     }
 
 });
+
+routerApi.get('/', function (req, res) {
+    res.render('dashboard/pages/index');
+
+})
 
 routerApi.get('/users', function (req, res) {
 

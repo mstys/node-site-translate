@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  {% include "./partials/header.twig" %}
+</head>
+
+<body>
+    {% include "./partials/navbar.twig" %}
+
+
+    <div class="container-fluid">
+		<div class="row">
+			<div class="col-4 col-md-2">
+				{% include "./partials/left_sidebar.twig" %}
+			</div>
+			<div class="col-8 col-md-10">
+				{% block main %}
+
+				{% endblock %}
+			</div>
+		</div>
+
+    </div>
+
+
+
+
+    <script src="/app.js"></script>
+</body>
+</html>
